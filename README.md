@@ -1,27 +1,18 @@
 # ImportingMdInAngular6
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2.
+**not solved** 
 
-## Development server
+Changed to angular builders to be able to add extra steps with webpack.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Added this snippet to get rid of an editor error
+```typescript 
+declare module '*.md' {
+  const value: any;
+  export default value;
+}
+```
 
-## Code scaffolding
+but unfortunately we get
+> ERROR in src/app/changelog.component.ts(3,16): error TS2307: Cannot find module '../../CHANGELOG.md'.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+However, with `ng s` when it try to recompile because of a change, it can make it although you can see the error. If you try to do `ng b` the error prevent the build to be done. 
